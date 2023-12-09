@@ -33,19 +33,24 @@ const goalSchema = mongoose.Schema({
     toObject:{virtuals:true}
 })
 
-goalSchema.virtual("timePercent").get(function(){
-    const dayUnit=24*3600*1000;
-    const diffInMilliSec = new Date(this.targetDate).getTime()-new Date(this.startDate).getTime()
-    const diffInDays = diffInMilliSec/dayUnit;
-    return diffInDays        
+goalSchema.virtual("timePercentLeft").get(function(){
+    const dayUnit=24*3600*1000;    
+    const currentDiffInMilliSec = new Date(this.targetDate).getTime()-new Date(Date.now()).getTime()
+    const currentDiffInDays = currentDiffInMilliSec/dayUnit;
+
+    if(currentDiffInDays<0){
+        return 0
+    }
+    const totalDiffInMilliSec = new Date(this.targetDate).getTime()-new Date(this.startDate).getTime()
+    const totalDiffInDays = totalDiffInMilliSec/dayUnit;
+    
+    return (currentDiffInDays/totalDiffInDays*100)        
 })
-// goalSchema.virtual("achievementPercent").get(function(){
-//     const allexercises = Exercise.find({});
-//     return allexercises    
-// })
-goalSchema.virtual("test").get(function(){
-   
-    return "Test"    
+goalSchema.virtual("achievementPercent").get(async function(){
+    const allexercises = await Exercise.find({});
+    const percent = {Exercises:allexercises}
+    console.log(percent)
+    return percent   
 })
 
 const Goal = mongoose.model("Goal",goalSchema)

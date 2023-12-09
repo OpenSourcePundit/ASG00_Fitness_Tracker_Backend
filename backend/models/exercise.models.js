@@ -15,6 +15,10 @@ const exerciseSchema = mongoose.Schema({
         type:Number,
         required:true,
     },
+    doneDate:{
+        type:Date,
+        default:Date.now()
+    }
 
 },{
     timestamps:true,
