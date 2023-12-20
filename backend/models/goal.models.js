@@ -79,7 +79,7 @@ goalSchema.virtual("achievementPercent").get(async function(){
         const ret =totalCaloriesBurned/this.targetCalorieValue*100
 
         // console.log(`falsecase ${ret}`)
-        return await ret
+        return ret
     
     
 })
