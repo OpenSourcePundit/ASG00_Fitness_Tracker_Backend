@@ -1,0 +1,12 @@
+{
+    "version":2,
+    "name": "fitness-tracker",
+    "builds":[{
+        "src": "backend/server.js",
+        "use": "@vercel/node"
+    }],
+    "routes":[{
+        "src":"/(.*)",
+        "dest":"/backend/server.js"
+    }]
+}
