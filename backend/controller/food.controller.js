@@ -2,6 +2,16 @@ import Food from "../models/food.models.js";
 
 export const AddFoodItem = async(req,res) =>{
     try {
+
+        const {name, calories,protein, carbs, fats} = req.body;
+
+        if(!name || !calories || !protein || !carbs || !fats ){
+            return res.status(404).json({
+                message:"Please provide all the required fields"
+            })
+        }
+
+
         const newFoodItem = await Food.create(req.body);
         res.status(201).json({
             success:true,
