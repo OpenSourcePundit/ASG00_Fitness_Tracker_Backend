@@ -3,9 +3,9 @@ import Goal from "../models/goal.models.js";
 export const AddGoal = async(req,res) =>{
     try {
 
-        const {name, description,startDate, targetDate, targetCalorieValue,totalCalBur, status} = req.body;
+        const {name, description,startDate, targetDate, targetCalorieValue} = req.body;
 
-        if(!name || !description || !startDate || !targetDate || !targetCalorieValue || !totalCalBur || !status){
+        if(!name || !description || !startDate || !targetDate || !targetCalorieValue  ){
             return res.status(404).json({
                 message:"Please provide all the required fields"
             })

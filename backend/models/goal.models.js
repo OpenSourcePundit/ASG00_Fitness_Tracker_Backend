@@ -61,7 +61,7 @@ goalSchema.virtual("totalCalorieBurned").get(async function(){
      console.log(`Caloriiiiees: ${cal}`)
      this.totalCalBur = cal
      await this.save();
-    return  await cal ;
+    return cal ;
     
 })
 
